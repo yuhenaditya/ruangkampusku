@@ -1,4 +1,3 @@
-// Data simulasi jadwal (jam 8-17, kosong/acara)
 const rooms = {
     'Ruang 101': ['08:00-09:00 (Kosong)', '09:00-10:00 (Dipakai)', '10:00-11:00 (Kosong)', '11:00-12:00 (Kosong)', '13:00-14:00 (Dipakai)', '14:00-15:00 (Kosong)', '15:00-16:00 (Kosong)', '16:00-17:00 (Dipakai)'],
     'Ruang 102': ['08:00-09:00 (Dipakai)', '09:00-10:00 (Kosong)', '10:00-11:00 (Kosong)', '11:00-12:00 (Dipakai)', '13:00-14:00 (Kosong)', '14:00-15:00 (Kosong)', '15:00-16:00 (Dipakai)', '16:00-17:00 (Kosong)'],
@@ -7,72 +6,109 @@ const rooms = {
     'Ruang 105': ['08:00-09:00 (Kosong)', '09:00-10:00 (Kosong)', '10:00-11:00 (Kosong)', '11:00-12:00 (Dipakai)', '13:00-14:00 (Kosong)', '14:00-15:00 (Kosong)', '15:00-16:00 (Dipakai)', '16:00-17:00 (Kosong)']
 };
 
-// Login simulasi
+// Login
 if (document.getElementById('loginForm')) {
-    document.getElementById('loginForm').addEventListener('submit', (e) => {
+    document.getElementById('loginForm').onsubmit = e => {
         e.preventDefault();
-        const username = document.getElementById('username').value;
-        localStorage.setItem('loggedIn', username);
-        window.location.href = 'dashboard.html';
-    });
+        localStorage.setItem('loggedIn', 'true');
+        location.href = 'dashboard.html';
+    };
 }
 
-// Cek login di dashboard
-if (localStorage.getItem('loggedIn')) {
-    // Logout
-    document.getElementById('logout').addEventListener('click', () => {
+// Register
+if (document.getElementById('registerForm')) {
+    document.getElementById('registerForm').onsubmit = e => {
+        e.preventDefault();
+        const modal = document.getElementById('registerSuccessModal');
+        if (modal) modal.classList.add('show');
+    };
+}
+
+// Dashboard
+if (localStorage.getItem('loggedIn') && document.getElementById('recList')) {
+    document.getElementById('logout').onclick = () => {
         localStorage.removeItem('loggedIn');
-        window.location.href = 'index.html';
+        location.href = 'index.html';
+    };
+
+    const confirmModal = document.getElementById('confirmModal');
+    const successModal = document.getElementById('successModal');
+    const confirmText = document.getElementById('confirmText');
+    const successDetail = document.getElementById('successDetail');
+    let pendingBooking = null;
+
+    const openRoomSchedule = (room) => {
+        document.getElementById('floorPlan').style.display = 'none';
+        document.getElementById('schedule').style.display = 'block';
+        document.getElementById('roomName').textContent = room;
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('datePicker').value = today;
+        loadSchedule(room, today);
+    };
+
+    const loadSchedule = (room, date) => {
+        const list = document.getElementById('scheduleList');
+        list.innerHTML = '';
+        rooms[room].forEach(slot => {
+            const time = slot.split(' ')[0];
+            const div = document.createElement('div');
+            div.className = 'slot';
+            div.innerHTML = `<strong>${time}</strong> ${slot.includes('Kosong') ? 'Tersedia' : 'Dibooking'}`;
+            if (slot.includes('Kosong')) {
+                div.classList.add('kosong');
+                div.style.cursor = 'pointer';
+                div.onclick = () => {
+                    pendingBooking = {room, time, date};
+                    const dateStr = new Date(date).toLocaleDateString('id-ID', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+                    confirmText.innerHTML = `Booking <strong>${room}</strong><br>pada <strong>${time}</strong><br><small>${dateStr}</small>`;
+                    confirmModal.classList.add('show');
+                };
+            } else {
+                div.classList.add('dipakai');
+            }
+            list.appendChild(div);
+        });
+    };
+
+    // Ganti tanggal
+    document.getElementById('datePicker').onchange = function() {
+        loadSchedule(document.getElementById('roomName').textContent, this.value);
+    };
+
+    // Klik ruangan dari denah
+    document.querySelectorAll('.room').forEach(el => {
+        el.onclick = () => openRoomSchedule(el.dataset.room);
     });
 
-    // Dark mode toggle
-    const themeToggle = document.getElementById('themeToggle');
-    themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-    });
-
-    // Rekomendasi ruangan kosong saat ini
-    const now = new Date();
-    const currentHour = now.getHours();
-    const recList = document.getElementById('recList');
+    // REKOMENDASI RUANGAN — 100% BISA DIKLIK!
     Object.keys(rooms).forEach(room => {
-        const schedule = rooms[room];
-        const isAvailable = schedule.some(slot => slot.includes(`${currentHour}:00-${currentHour+1}:00 (Kosong)`));
-        if (isAvailable) {
-            const li = document.createElement('li');
-            li.textContent = `${room} tersedia sekarang!`;
-            recList.appendChild(li);
+        if (rooms[room].some(s => s.includes('Kosong'))) {
+            const card = document.createElement('div');
+            card.className = 'slot kosong';
+            card.innerHTML = `<strong style="font-size:1.4em;display:block;margin-bottom:8px">${room}</strong><small>Klik untuk melihat jadwal</small>`;
+            card.style.cursor = 'pointer';
+            card.style.textAlign = 'center';
+            card.style.padding = '20px';
+            card.style.borderRadius = '16px';
+            card.onclick = () => openRoomSchedule(room);
+            document.getElementById('recList').appendChild(card);
         }
     });
 
-    // Denah interaktif
-    const roomsElements = document.querySelectorAll('.room');
-    roomsElements.forEach(roomEl => {
-        roomEl.addEventListener('click', () => {
-            const room = roomEl.dataset.room;
-            document.getElementById('floorPlan').style.display = 'none';
-            document.getElementById('schedule').style.display = 'block';
-            document.getElementById('roomName').textContent = room;
-            const scheduleList = document.getElementById('scheduleList');
-            scheduleList.innerHTML = '';
-            rooms[room].forEach(slot => {
-                const li = document.createElement('li');
-                li.textContent = slot;
-                scheduleList.appendChild(li);
-            });
-        });
-    });
-
-    // Tombol back
-    document.getElementById('backBtn').addEventListener('click', () => {
+    document.getElementById('backBtn').onclick = () => {
         document.getElementById('schedule').style.display = 'none';
         document.getElementById('floorPlan').style.display = 'block';
-    });
+    };
 
-    // Book simulasi
-    document.getElementById('bookBtn').addEventListener('click', () => {
-        alert('Booking berhasil! (Simulasi saja)');
-    });
-} else if (window.location.pathname.includes('dashboard.html')) {
-    window.location.href = 'index.html'; // Redirect jika belum login
+    // Tutup popup
+    document.getElementById('confirmNo').onclick = () => confirmModal.classList.remove('show');
+    document.getElementById('confirmYes').onclick = () => {
+        confirmModal.classList.remove('show');
+        const {room, time, date} = pendingBooking;
+        const dateStr = new Date(date).toLocaleDateString('id-ID', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+        successDetail.innerHTML = `Kamu berhasil booking:<br><strong>${room}</strong><br><strong>${time}</strong><br><small>${dateStr}</small>`;
+        successModal.classList.add('show');
+    };
+
+    window.closeSuccessModal = () => successModal.classList.remove('show');
 }

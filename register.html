@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar • Booking Ruang Kampus</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Daftar Akun Baru</h1>
+        </div>
+        <div class="form-area">
+            <form id="registerForm">
+                <input type="text" placeholder="Nama Lengkap" required>
+                <input type="text" placeholder="NIM" required>
+                <input type="email" placeholder="Email Kampus" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="btn-login">Daftar Sekarang</button>
+            </form>
+            <div class="register-section">
+                <p>Sudah punya akun?</p>
+                <a href="index.html" class="btn-register">Kembali Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Sukses Daftar -->
+    <div id="registerSuccessModal" class="modal">
+        <div class="modal-content">
+            <div class="checkmark-circle">✓</div>
+            <h3>Akun Berhasil Dibuat!</h3>
+            <p>Silakan login dengan akun baru kamu</p>
+            <button onclick="window.location.href='index.html'" class="btn-login">Login Sekarang</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
