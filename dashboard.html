@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard • Booking Ruang</title>
+    <title>Dashboard • Booking Ruang Kampus</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Booking Ruang Kampus</h1>
-            <button id="logout">Logout</button>
+            <div>
+                <button id="resetBookings" class="btn-reset">
+                    <i class="fas fa-trash-alt"></i> Reset Booking
+                </button>
+                <button id="logout" class="btn-logout">Logout</button>
+            </div>
         </header>
 
         <section id="recommendations">
@@ -36,7 +42,13 @@
                 <input type="date" id="datePicker">
             </div>
             <div id="scheduleList"></div>
-            <button id="backBtn" class="btn-back">Kembali</button>
+            
+            <!-- TOMBOL KEMBALI — SEKARANG SUPER CANTIK! -->
+            <div style="text-align: center; margin-top: 30px;">
+                <button id="backBtn" class="btn-back-modern">
+                    <i class="fas fa-arrow-left"></i> Kembali ke Pilih Ruangan
+                </button>
+            </div>
         </section>
     </div>
 
@@ -55,10 +67,10 @@
     <!-- Popup Sukses -->
     <div id="successModal" class="modal">
         <div class="modal-content">
-            <div class="checkmark-circle">✓</div>
+            <div class="checkmark-circle"><i class="fas fa-check"></i></div>
             <h3>Booking Berhasil!</h3>
             <p id="successDetail"></p>
-            <button onclick="closeSuccessModal()" class="btn-login">Oke</button>
+            <button onclick="closeSuccessModal()" class="btn-login">Oke, Kembali</button>
         </div>
     </div>
 
