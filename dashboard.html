@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Booking Ruang</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Booking Ruang Kampus</h1>
+        <button id="themeToggle">Toggle Dark Mode</button>
+        <button id="logout">Logout</button>
+    </header>
+    <div class="container">
+        <section id="recommendations">
+            <h2>Rekomendasi Ruangan Kosong Saat Ini</h2>
+            <ul id="recList"></ul>
+        </section>
+        <section id="floorPlan">
+            <h2>Denah Ruangan</h2>
+            <div class="grid">
+                <!-- Denah sederhana dengan grid CSS -->
+                <div class="room" data-room="Ruang 101">Ruang 101</div>
+                <div class="room" data-room="Ruang 102">Ruang 102</div>
+                <div class="room" data-room="Ruang 103">Ruang 103</div>
+                <div class="room" data-room="Ruang 104">Ruang 104</div>
+                <div class="room" data-room="Ruang 105">Ruang 105</div>
+            </div>
+        </section>
+        <section id="schedule" style="display: none;">
+            <h2>Jadwal Ruangan <span id="roomName"></span></h2>
+            <ul id="scheduleList"></ul>
+            <button id="bookBtn">Book Sekarang</button>
+            <button id="backBtn">Kembali ke Denah</button>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
