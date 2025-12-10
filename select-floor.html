@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pilih Lantai | University Empathy Room Detection</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header class="topbar">
+        <h2>University Empathy Room Detection</h2>
+
+        <div class="topbar-right">
+            <a href="history.html" class="history-btn">History</a>
+            <a href="index.html" class="logout-btn">Logout</a>
+        </div>
+    </header>
+
+    <div class="page-container">
+        <h1 class="page-title">Pilih Lantai</h1>
+        <p class="page-sub">Silakan pilih lantai dari gedung yang kamu pilih sebelumnya</p>
+
+        <div id="floorGrid" class="building-grid"></div>
+        <a id="backBtn" class="back-btn">Kembali</a>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const building = urlParams.get("building");
+
+        const floors = {
+            rektorat: 5,
+            iot: 3,
+            dc: 3,
+            tt: 3,
+            dsp: 3
+        };
+
+        const container = document.getElementById("floorGrid");
+
+        if (!building || !floors[building]) {
+            container.innerHTML = "<p>Gedung tidak ditemukan.</p>";
+        } else {
+            for (let i = 1; i <= floors[building]; i++) {
+                const link = document.createElement("a");
+                link.className = "building-card";
+                link.href = `select-room.html?building=${building}&floor=${i}`;
+                link.textContent = `Lantai ${i}`;
+                container.appendChild(link);
+            }
+        }
+    
+        document.getElementById("backBtn").href =
+            "select-building.html?building=" + localStorage.getItem("selectedBuilding");
+    </script>
+</body>
+</html>

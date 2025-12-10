@@ -1,0 +1,441 @@
+/* =============================
+   GLOBAL STYLE - RED MODERN THEME
+   ============================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #f5f5f5;
+    color: #333;
+}
+
+/* =============================
+   TOP BAR (HEADER)
+   ============================= */
+.topbar {
+    width: 100%;
+    background: #b80000;
+    padding: 15px 25px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topbar h2 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.logout-btn {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    background: #8c0000;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #700000;
+}
+
+/* =============================
+   PAGE LAYOUT
+   ============================= */
+.page-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #b80000;
+    margin-bottom: 8px;
+}
+
+.page-sub {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* =============================
+   BUILDING SELECT GRID
+   ============================= */
+.building-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.building-card {
+    background: white;
+    padding: 18px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    font-size: 18px;
+    font-weight: 600;
+    color: #b80000;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+.building-card:hover {
+    background: #b80000;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* =============================
+    AUTH PAGES (LOGIN & REGISTER)
+   ============================= */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.auth-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 420px;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.auth-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #b80000;
+}
+
+.auth-sub {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #b80000;
+    box-shadow: 0 0 8px rgba(184, 0, 0, 0.3);
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 13px;
+    margin-top: 10px;
+    border: none;
+    background: #b80000;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.auth-btn:hover {
+    background: #a00000;
+}
+
+.auth-bottom {
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.auth-bottom a {
+    color: #b80000;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-bottom a:hover {
+    text-decoration: underline;
+}
+
+/* =============================
+        ANIMATIONS
+   ============================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ROOM CARD LIST */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #b80000;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    background: #b80000;
+    color: white;
+    transform: translateY(-4px);
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 16px;
+    background: #777;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: #555;
+}
+
+/* BOOKING CARD */
+.booking-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    max-width: 450px;
+    margin: 0 auto 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.booking-card label {
+    font-weight: 600;
+    color: #b80000;
+}
+
+.booking-card input,
+.booking-card select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.booking-card input:focus,
+.booking-card select:focus {
+    outline: none;
+    border-color: #b80000;
+    box-shadow: 0 0 8px rgba(184, 0, 0, 0.3);
+}
+
+/* Success Page */
+.success-container {
+    max-width: 600px;
+    margin: 120px auto;
+    text-align: center;
+    background: white;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.success-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #b80000;
+    margin-bottom: 10px;
+}
+
+/* SLOT GRID BIOSKOP */
+/* Container grid untuk slot */
+.slot-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Kotak jam */
+.slot {
+    padding: 18px 12px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    border: 2px solid #ddd;
+    transition: 0.2s;
+}
+
+/* Available = hijau */
+.slot.available {
+    background: #d4ffd6;
+    border-color: #6ac96a;
+}
+
+/* Booked = merah */
+.slot.booked {
+    background: #ffcccc;
+    border-color: #ff5e5e;
+    cursor: not-allowed;
+}
+
+/* Hover untuk available */
+.slot.available:hover {
+    background: #baffbd;
+}
+
+
+/* POPUP */
+.popup {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+.popup-box {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 300px;
+    text-align: center;
+}
+
+.slot.mine {
+    background: #007BFF;
+    color: white;
+}
+
+.slot {
+    padding: 12px;
+    margin: 6px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.slot.available {
+    background: #28a745; /* hijau */
+    color: white;
+}
+
+.slot.booked {
+    background: #c00000; /* merah */
+    color: white;
+    cursor: not-allowed;
+}
+
+.slot.mine {
+    background: #007bff; /* biru */
+    color: white;
+}
+
+.topbar {
+    width: 100%;
+    background: #b30000;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topbar h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.history-btn {
+    background: #3498db;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.history-btn:hover {
+    background: #217dbb;
+}
+
+.logout-btn {
+    background: #e74c3c;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logout-btn:hover {
+    background: #c0392b;
+}

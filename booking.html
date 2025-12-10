@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Ruangan | University Empathy Room Detection</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <h2>University Empathy Room Detection</h2>
+
+        <div class="topbar-right">
+            <a href="history.html" class="history-btn">History</a>
+            <a href="index.html" class="logout-btn">Logout</a>
+        </div>
+    </header>
+
+    <div class="page-container">
+
+        <h1 class="page-title">Booking Ruangan</h1>
+        <p id="room-info" class="page-sub"></p>
+
+        <label>Pilih Tanggal:</label>
+        <input type="date" id="datePicker">
+
+        <div id="slotContainer" class="slot-container"></div>
+
+        <a href="select-room.html" class="back-btn">Kembali</a>
+    </div>
+
+    <!-- POPUP -->
+    <div id="popup" class="popup hidden">
+        <div class="popup-box">
+            <h2>Booking Berhasil!</h2>
+            <p id="popupInfo"></p>
+            <button onclick="closePopup()" class="auth-btn">OK</button>
+        </div>
+    </div>
+
+    <script src="js/booking.js"></script>
+</body>
+</html>

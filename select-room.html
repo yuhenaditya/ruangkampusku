@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pilih Ruangan | University Empathy Room Detection</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <header class="topbar">
+        <h2>University Empathy Room Detection</h2>
+
+        <div class="topbar-right">
+            <a href="history.html" class="history-btn">History</a>
+            <a href="index.html" class="logout-btn">Logout</a>
+        </div>
+    </header>
+
+    <div class="page-container">
+        <h1 class="page-title">Pilih Ruangan</h1>
+        <p class="page-sub">Silakan pilih ruangan pada lantai yang kamu pilih</p>
+
+        <div class="card-list">
+            <a href="booking.html" class="card" onclick="selectRoom('Room 101')">Room 101</a>
+            <a href="booking.html" class="card" onclick="selectRoom('Room 102')">Room 102</a>
+            <a href="booking.html" class="card" onclick="selectRoom('Room 103')">Room 103</a>
+            <a href="booking.html" class="card" onclick="selectRoom('Room 201')">Room 201</a>
+            <a href="booking.html" class="card" onclick="selectRoom('Room 202')">Room 202</a>
+        </div>
+
+        <!-- PERBAIKAN BAGIAN INI -->
+        <a id="backBtn" class="back-btn">Kembali</a>
+
+    </div>
+
+    <script>
+        // simpan room
+        function selectRoom(room) {
+            localStorage.setItem("selectedRoom", room);
+        }
+
+        // ambil param dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const building = urlParams.get("building");
+        const floor = urlParams.get("floor");
+
+        // simpan ke localStorage
+        if (building) localStorage.setItem("selectedBuilding", building);
+        if (floor) localStorage.setItem("selectedFloor", floor);
+        
+        // SET HREF TOMBOL KEMBALI
+        document.getElementById("backBtn").href =
+            "select-floor.html?building=" + localStorage.getItem("selectedBuilding");
+    </script>
+</body>
+</html>
